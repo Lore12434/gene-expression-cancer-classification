@@ -83,10 +83,10 @@ Using 2D t-SNE and PCA, global transcriptomic profiles separated cleanly into di
 ### 3. Sparse Feature Selection (Elastic Net)
 To derive a fully interpretable "white-box" model:
 1. An **Elastic-Net Logistic Regression** model was optimized over parameter space ($C, \ell_1\text{-ratio}$) using randomized cross-validation:
-   $$\min_{w} \left\{ -\frac{1}{m}\sum_{i=1}^{m} \log P(y^{(i)} \mid x^{(i)}; w) + \lambda \left[ \alpha \|w\|_1 + \frac{1 - \alpha}{2} \|w\|_2^2 \right] \right\}$$
+   $$\min_{w} \left[ -\frac{1}{m}\sum_{i=1}^{m} \log P(y^{(i)} \mid x^{(i)}; w) + \lambda \left( \alpha \|w\|_1 + \frac{1 - \alpha}{2} \|w\|_2^2 \right) \right]$$
 2. From the coefficient matrix $W \in \mathbb{R}^{K \times D}$ ($K=5$ classes, $D=20,531$ genes), features with zero coefficients across all classes were eliminated.
 3. For each retained gene $j$, we computed its maximum absolute weight across all classes:
-   $$S_j = \max_{k \in \{1 \dots K\}} |W_{k, j}|$$
+   $$S_j = \max_{1 \le k \le K} |W_{k, j}|$$
 4. A dynamic range threshold was applied:
    $$\text{Threshold} = \frac{S_{\max} - S_{\min}}{2}$$
    Genes satisfying $S_j > \text{Threshold}$ were preserved.
@@ -263,3 +263,6 @@ You can also run through the notebooks interactively:
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 ```
+
+---
+
