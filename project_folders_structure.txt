@@ -1,0 +1,32 @@
+gene-expression-cancer-classification/
+│
+├── .gitignore               # Files/folders Git should ignore (e.g., data, cache)
+├── README.md                # The face of your project (overview, results, instructions)
+├── LICENSE                  # Open-source license (e.g., MIT, Apache 2.0)
+├── requirements.txt         # List of Python dependencies (or environment.yml)
+│
+├── data/                    # NOT pushed to GitHub (listed in .gitignore)
+│   ├── raw/                 # Downloaded UCI PANCAN raw data (.csv or .tar.gz)
+│   └── processed/           # Filtered, normalized, train/test split data
+│
+├── notebooks/               # For exploration, prototyping, and visualization
+│   ├── 01_eda_and_dim_reduction.ipynb
+│   ├── 02_preprocessing_feature_selection.ipynb
+│   └── 03_model_training_and_evaluation.ipynb
+│
+├── src/                     # Modular Python code (refactored from notebooks)
+│   ├── __init__.py
+│   ├── data_loader.py       # Functions to load and validate data
+│   ├── preprocessing.py     # Log-transformation, scaling, feature selection
+│   ├── train.py             # Script to train models (SVM, Random Forest, MLP, etc.)
+│   └── evaluate.py          # Metrics, confusion matrix generation
+│
+├── models/                  # Serialized models and transformers
+│   └── final_model.pkl      # Saved best model (joblib/pickle)
+│
+├── reports/                 # Output plots and final report
+│   ├── figures/             # Confusion matrices, PCA/t-SNE plots, ROC curves
+│   └── summary.md           # Summary of findings and model comparison
+│
+└── app/                     # (Optional) Interactive Demo
+    └── app.py               # Streamlit or Gradio demo
